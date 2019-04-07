@@ -22,7 +22,8 @@ import json
 
 from collections import OrderedDict
 
-from io_scene_g3d import util, simpleubjson
+import ubjson
+from io_scene_g3d import util
 from io_scene_g3d.util import Util
 from io_scene_g3d.domain_classes import G3DModel
 from io_scene_g3d.g3dj_json_encoder import G3DJsonEncoder
@@ -277,11 +278,6 @@ class G3DBWriter(G3DBaseWriter):
 
         output_file = open(filepath, 'wb')
         
-        simpleubjson.old_format_json = self.oldFormat
-        outputdata = simpleubjson.encode(data=baseModel)
-        output_file.write(outputdata)
+        output_file.write(ubjson.dumpb(baseModel))
         output_file.close()
 
-        if util.LOG_LEVEL >= util._DEBUG_:
-            simpleubjson.set_datatype_format(self.oldFormat)
-            simpleubjson.pprint(outputdata)
