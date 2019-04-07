@@ -155,7 +155,7 @@ class G3DBaseExporterOperator(ExportHelper, IOG3DOrientationHelper):
         exporter = None
         if self.filename_ext == ".g3dj":
             exporter = g3d_file_writer.G3DJWriter()
-        elif self.filename_ext == ".g3db":
+        elif self.filename_ext == ".ubj":
             exporter = g3d_file_writer.G3DBWriter(old_format=self.oldFormatJson)
 
         if exporter is not None:
@@ -1242,16 +1242,10 @@ class G3DBaseExporterOperator(ExportHelper, IOG3DOrientationHelper):
 
 class G3DBExporterOperator(bpy.types.Operator, G3DBaseExporterOperator):
     bl_idname = "export_json_g3d.g3db"
-    bl_label = "G3DB Exporter"
+    bl_label = "UBJSON Exporter"
     bl_options = {'PRESET'}
 
-    filename_ext = ".g3db"
-    
-    oldFormatJson = BoolProperty(
-        name="Use Old UBJSON Datatypes",
-        description="Use the old UBJSON datatype sizes. LibGDX loads the old format by default.",
-        default=True
-    )
+    filename_ext = ".ubj"
     
     order = [
         "filepath",

@@ -29,14 +29,12 @@ import bpy
 from .g3d_exporter import G3DJExporterOperator, G3DBExporterOperator
 
 bl_info = {
-    "name": "LibGDX G3D Exporter",
-    "author": "Danilo Costa Viana",
+    "name": "UBJSON Exporter",
+    "author": "Danilo Costa Viana (modified by hilkojj)",
     "version": (0, 2, 7),
     "blender": (2, 76, 0),
     "location": "File > Import-Export",
-    "description": "Export scene to LibGDX format",
-    "tracker_url": "https://github.com/Dancovich/libgdx_blender_g3d_exporter/issues",
-    "wiki_url": "https://github.com/Dancovich/libgdx_blender_g3d_exporter/wiki",
+    "description": "Export scene to binary JSON (UBJSON)",
     "category": "Import-Export"}
 
 try:
@@ -57,7 +55,7 @@ class Mesh(object):
 
 def menu_func(self, context):
     self.layout.operator(G3DJExporterOperator.bl_idname, text="LibGDX G3D text format (.g3dj)")
-    self.layout.operator(G3DBExporterOperator.bl_idname, text="LibGDX G3D binary format (.g3db)")
+    self.layout.operator(G3DBExporterOperator.bl_idname, text="Binary JSON (.ubj)")
 
 
 def register():
